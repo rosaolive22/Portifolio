@@ -2,7 +2,7 @@ package TREVO.api.controller;
 
 import TREVO.api.catalog.Catalog;
 import TREVO.api.catalog.CatalogRepository;
-import TREVO.api.catalog.ONCatalog;
+import TREVO.api.catalog.CatalogDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class CatalogController {
     @Autowired
     private CatalogRepository repository;
     @PostMapping
-    public void catalog(@RequestBody ONCatalog dados){
+    public void catalog(@RequestBody CatalogDTO dados){
         repository.save(new Catalog(dados));
     }
     @GetMapping(value ="/listar")
@@ -29,7 +29,7 @@ public class CatalogController {
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
     @PutMapping(value = "/atualizar/{id}")
     @Transactional
-    public ResponseEntity<?> update(@RequestBody @Valid ONCatalog dados, @PathVariable Long id){
+    public ResponseEntity<?> update(@RequestBody @Valid CatalogDTO dados, @PathVariable Long id){
         Catalog catalog= repository.findById(id).orElse(null);
         assert catalog != null;
         catalog.atualizar(dados);

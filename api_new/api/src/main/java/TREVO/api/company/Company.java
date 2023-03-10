@@ -3,7 +3,6 @@ package TREVO.api.company;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.persistence.Id;
 
 @Table(name = "tb_company")
@@ -28,14 +27,14 @@ public class Company {
     private Integer founding_yeans;
     private Boolean ativo;
 
-    public Company(DadosCompany dados) {
+    public Company(CompanyDTO dados) {
         this.cnpj = dados.cnpj();
         this.name = dados.name();
         this.business_branch = dados.business_branch();
         this.founding_yeans = dados.founding_yeans();
         this.ativo = true;
     }
-    public void atualizar(DadosCompany dados) {
+    public void atualizar(CompanyDTO dados) {
         if (dados.cnpj() != null) {
             this.cnpj = dados.cnpj();
         }

@@ -21,11 +21,11 @@ public class Catalog {
     private Integer id_company;
     private Boolean ativo;
 
-    public Catalog(ONCatalog dados) {
+    public Catalog(CatalogDTO dados) {
         this.culture = dados.culture();
         this.ativo = true;
     }
-    public void atualizar(ONCatalog dados) {
+    public void atualizar(CatalogDTO dados) {
         if(dados.culture() != null){
             this.culture = dados.culture();
         }

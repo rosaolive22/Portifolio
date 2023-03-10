@@ -5,9 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 
-public record DadosCompany(
+public record CompanyDTO(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id,

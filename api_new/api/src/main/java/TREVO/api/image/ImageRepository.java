@@ -8,12 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository//teste
+@Repository
 public interface ImageRepository extends JpaRepository<Image,Long> {
     List<Image> findByIdIn(List<Long> imgsIds);
 
-        //static List<Image> findByIdIn() {
-        //}
         //Page<Image> findAllByAtivoTrue(Pageable paginacao);
 
 }

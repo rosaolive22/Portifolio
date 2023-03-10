@@ -29,7 +29,7 @@ public class Order {
     private String country;
     private Boolean ativo;
 
-    // Relacionamentos entre as tables
+    // Relacionamentos
     @ManyToMany
     @JoinTable
             //Nome da table de relação/N coluna/identificador desta tabela/tables 2ª

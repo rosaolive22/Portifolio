@@ -1,5 +1,7 @@
 package TREVO.api.controller;
 
+import TREVO.api.catalog.Catalog;
+import TREVO.api.catalog.CatalogRepository;
 import TREVO.api.image.Image;
 import TREVO.api.image.ImageRepository;
 import TREVO.api.product.Product;
@@ -24,12 +26,15 @@ public class ProductController {
     private ProductRepository repository;
     @Autowired
     private ImageRepository imageRepository;
+    @Autowired
+    private CatalogRepository catalogRepository;
 
     @PostMapping(value = "/cadastrar")
     @Transactional
     public ResponseEntity<?> cadastrar(@RequestBody @Valid ProductDTO dados) {
         List<Image> imgs = imageRepository.findByIdIn(dados.imgsIds());
-        repository.save(new Product(dados, imgs));
+        List<Catalog> catalogs = catalogRepository.findByIdIn(dados.catalogIds());
+        repository.save(new Product(dados, imgs, catalogs));
         return ResponseEntity.ok().body("Produto cadastrado com sucesso!");
     }
     @GetMapping(value = "/listar")

@@ -2,7 +2,7 @@ package TREVO.api.controller;
 
 import TREVO.api.company.Company;
 import TREVO.api.company.CompanyRepository;
-import TREVO.api.company.DadosCompany;
+import TREVO.api.company.CompanyDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CompanyController {
     @Autowired
     private CompanyRepository repository;
     @PostMapping
-    public void company(@RequestBody DadosCompany dados){
+    public void company(@RequestBody CompanyDTO dados){
         repository.save(new Company(dados));
     }
     @GetMapping(value ="/listar")
@@ -30,7 +30,7 @@ public class CompanyController {
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
     @PutMapping(value = "/atualizar/{id}")
     @Transactional
-    public ResponseEntity<?> update(@RequestBody @Valid DadosCompany dados, @PathVariable Long id){
+    public ResponseEntity<?> update(@RequestBody @Valid CompanyDTO dados, @PathVariable Long id){
         Company company= repository.getReferenceById(id);
         company.atualizar(dados);
         repository.save(company);

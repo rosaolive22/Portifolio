@@ -12,11 +12,14 @@ public record ProductDTO(
         @NotBlank
         String size,
         @NotNull
-        Boolean status,//teste12..
+        Boolean status,
         Culture culture,
         @JsonProperty ("imgs")
         @NotEmpty(message = "Adicionar imagem.")
-        List<Long>imgsIds){
+        List<Long>imgsIds,
+        @JsonProperty ("catalogs")
+        @NotEmpty(message = "Adicionar catalog.")
+        List<Long>catalogIds){
         }
 
 
