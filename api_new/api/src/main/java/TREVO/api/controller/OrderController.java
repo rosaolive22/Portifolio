@@ -22,7 +22,7 @@ public class OrderController {
     @Autowired
     private ProductRepository productRepository;
     @PostMapping
-    public void customer(@RequestBody OrderDTO dados) {
+    public void order(@RequestBody OrderDTO dados) {
         List<Product> products = productRepository.findByIdIn(dados.productIds());
         repository.save(new Order(dados, products));
     }
@@ -30,6 +30,7 @@ public class OrderController {
     public Page<Order> listar(Pageable paginacao){
         return repository.findAll(paginacao);
     }
+
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
     @PutMapping(value = "/atualizar/{id}")
     @Transactional
@@ -40,7 +41,7 @@ public class OrderController {
         repository.save(order);
         return ResponseEntity.ok().body("Solicitação de orçamento efetuada com sucesso! \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
     }
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "excluir/{id}")
     @Transactional
     public void excluir(@PathVariable Long id){
         //Exclusão lógica, mantem arquivado:

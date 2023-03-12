@@ -1,6 +1,7 @@
 package TREVO.api.catalog;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Table(name = "tb_catalog")

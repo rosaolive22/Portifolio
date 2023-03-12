@@ -54,14 +54,15 @@ public class ProductController {
         repository.save(product);
         return ResponseEntity.ok().body("Produto atualizado com sucesso!");
     }
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "excluir/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclusão lógica, mantem arquivado:
         Product product = repository.findById(id).orElse(null);
         assert product != null;
         product.excluir();
         repository.save(product);
+        return ResponseEntity.ok().body("Exclusão lógica concluida.");
         //Excluir definitivamente:
         //repository.deleteById(id_product);
     }

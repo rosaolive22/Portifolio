@@ -37,11 +37,12 @@ public class ImageController {
     }
     @DeleteMapping(value = "/{cod}")
     @Transactional
-    public void excluir(@PathVariable Long cod){
+    public ResponseEntity<?> excluir(@PathVariable Long cod){
         //Exclusão lógica, mantem arquivado:
         Image image= repository.findById(cod).orElse(null);
         assert image != null;
         image.excluir();
+        return ResponseEntity.ok().body("Exclusão lógica concluida.");
         //Exclui definitivamente:
         //repository.deleteById(cod);
     }

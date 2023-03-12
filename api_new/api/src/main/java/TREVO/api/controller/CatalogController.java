@@ -38,10 +38,11 @@ public class CatalogController {
     }
     @DeleteMapping(value = "/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclusão lógica, mantem arquivado:
         Catalog catalog= repository.findById(id).orElse(null);
         catalog.excluir();
+        return ResponseEntity.ok().body("Catalogo excluído com sucesso.");
         //Exclui definitivamente:
         //repository.deleteById(id);
     }

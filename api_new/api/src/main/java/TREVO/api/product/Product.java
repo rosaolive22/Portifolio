@@ -4,6 +4,7 @@ import TREVO.api.catalog.Catalog;
 import TREVO.api.catalog.Culture;
 import TREVO.api.image.Image;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @NotBlank
     @Column(name = "name")
     private String name;
     @Column(name = "size")
@@ -31,9 +33,9 @@ public class Product {
     @NotNull
     @Column(name = "status")
     private Boolean status;
-    @NotNull
-    @Column(name = "desciption", columnDefinition = "Text")//nome no banco de dados
-    private String technical_desciption;
+    @NotBlank
+    @Column(name = "desciption", columnDefinition = "Text")
+    private String desciption;
     @Column(name = "date_register")
     private LocalDate date_register = LocalDate.now();
     @Enumerated(EnumType.STRING)
@@ -41,7 +43,6 @@ public class Product {
     private Boolean ativo;
     @OneToMany
     @JoinTable
-            //Nome da table new/N coluna new/id desta tabela/2ªlinha refe. da entiadade/table do relacionamento
             (
                     name = "product_image",
                     joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
@@ -66,7 +67,6 @@ public class Product {
         this.catalogs = catalogs;
         this.ativo = true;
     }
-
     public void atualizar(ProductDTO dados) {
         if (dados.name() != null) {
             this.name = dados.name();
