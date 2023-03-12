@@ -18,8 +18,9 @@ public class CompanyController {
     @Autowired
     private CompanyRepository repository;
     @PostMapping
-    public void company(@RequestBody CompanyDTO dados){
+    public ResponseEntity<?>  cadastrar(@RequestBody CompanyDTO dados){
         repository.save(new Company(dados));
+        return ResponseEntity.ok().body("Company cadastrada com sucesso!");
     }
     @GetMapping(value ="/listar")
     public Page<Company> listar(@PageableDefault() Pageable paginacao) {
@@ -36,13 +37,14 @@ public class CompanyController {
         repository.save(company);
         return ResponseEntity.ok().body("Dados da Company TREVO S.A., atualizado com sucesso!");
     }
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "excluir/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclusão lógica, mantem arquivado:
         Company company= repository.getReferenceById(id);
         company.excluir();
         repository.save(company);
+        return ResponseEntity.ok().body("Company TREVO S.A., excluída.");
         //Exclui definitivamente:
         //repository.deleteById(id);
     }

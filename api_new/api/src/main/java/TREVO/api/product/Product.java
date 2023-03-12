@@ -65,6 +65,7 @@ public class Product {
         this.culture = dados.culture();
         this.imgs = imgs;
         this.catalogs = catalogs;
+        this.desciption = desciption;
         this.ativo = true;
     }
     public void atualizar(ProductDTO dados) {
@@ -79,6 +80,9 @@ public class Product {
         }
         if (dados.culture() != null) {
             this.culture = dados.culture();
+        }
+        if (dados.desciption() != null){
+            this.desciption =dados.desciption();
         }
     }
     public void excluir() {

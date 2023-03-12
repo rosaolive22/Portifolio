@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;//
 
 import java.util.List;
 
+import static org.springframework.web.servlet.function.ServerResponse.ok;
+
 
 @RestController
 @RequestMapping("product")
@@ -61,7 +63,6 @@ public class ProductController {
         Product product = repository.findById(id).orElse(null);
         assert product != null;
         product.excluir();
-        repository.save(product);
         return ResponseEntity.ok().body("Exclusão lógica concluida.");
         //Excluir definitivamente:
         //repository.deleteById(id_product);

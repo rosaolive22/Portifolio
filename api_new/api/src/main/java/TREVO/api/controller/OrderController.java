@@ -22,9 +22,11 @@ public class OrderController {
     @Autowired
     private ProductRepository productRepository;
     @PostMapping
-    public void order(@RequestBody OrderDTO dados) {
+    public ResponseEntity<?> cadastrar(@RequestBody OrderDTO dados) {
         List<Product> products = productRepository.findByIdIn(dados.productIds());
         repository.save(new Order(dados, products));
+        return ResponseEntity.ok().body("Solicitação de orçamento efetuada com sucesso! " +
+                "\nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
     }
     @GetMapping(value ="/listar")
     public Page<Order> listar(Pageable paginacao){
@@ -39,16 +41,18 @@ public class OrderController {
         assert order != null;
         order.atualizar(dados);
         repository.save(order);
-        return ResponseEntity.ok().body("Solicitação de orçamento efetuada com sucesso! \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
+        return ResponseEntity.ok().body("Solicitação de orçamento atualizada com sucesso!" +
+                " \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
     }
     @DeleteMapping(value = "excluir/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id){
+    public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclusão lógica, mantem arquivado:
         Order order = repository.findById(id).orElse(null);
         assert order != null;
         order.excluir();
         repository.save(order);
+        return ResponseEntity.ok().body("Pedido de orçamento cancelado.");
         //Exclui definitivamente:
         //repository.deleteById(order);
     }

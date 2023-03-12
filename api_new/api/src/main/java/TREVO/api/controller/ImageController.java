@@ -18,8 +18,9 @@ public class ImageController {
     @Autowired
     private ImageRepository repository;
     @PostMapping
-    public void image(@RequestBody ImageDTO dados){
-    repository.save(new Image(dados));
+    public ResponseEntity cadastrar(@RequestBody ImageDTO dados){
+        repository.save(new Image(dados));
+        return ResponseEntity.ok().body(" Imagem cadastrada!");
     }
     @GetMapping(value = "/listar")
     public Page<Image> listar(@PageableDefault(page = 0, size = 2, sort = {"img"}) Pageable paginacao) {
@@ -35,7 +36,7 @@ public class ImageController {
         repository.save(image);
         return ResponseEntity.ok().body("Imagem atualizada com sucesso!");
     }
-    @DeleteMapping(value = "/{cod}")
+    @DeleteMapping(value = "excluir/{cod}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long cod){
         //Exclusão lógica, mantem arquivado:
