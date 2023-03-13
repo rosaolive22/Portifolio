@@ -18,7 +18,6 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private Integer id_product;
     @NotNull
     private URL img;
     private Boolean ativo;
