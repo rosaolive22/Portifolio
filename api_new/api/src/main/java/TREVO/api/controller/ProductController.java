@@ -15,7 +15,9 @@ import org.springframework.data.domain.Pageable;//
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;//
 import org.springframework.web.bind.annotation.*;//
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 import static org.springframework.web.servlet.function.ServerResponse.ok;
@@ -33,14 +35,24 @@ public class ProductController {
 
     @PostMapping(value = "/cadastrar")
     @Transactional
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid ProductDTO dados) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid ProductDTO dados, UriComponentsBuilder uriBuilder) {
         List<Image> imgs = imageRepository.findByIdIn(dados.imgsIds());
         List<Catalog> catalogs = catalogRepository.findByIdIn(dados.catalogIds());
         repository.save(new Product(dados, imgs, catalogs));
-        return ResponseEntity.ok().body("Produto cadastrado com sucesso!");
+        return ResponseEntity.ok().body("Produto "+ dados.name() +" cadastrado com sucesso!");
+
+        //var product = new Product((dados, imgs, catalogs));
+        //repository.save(product);
+        //var uri :URI = uriBuilder.path("/product/{id}").buildAndExpand(product.getId()).toUri();
+        //return ResponseEntity.created(uri).body(new ProductDTO (product));
+
+
     }
     @GetMapping(value = "/listar")
     public Page<Product> listar(@PageableDefault(size=10, sort={"name"}) Pageable paginacao){
+
+        //var page : Page<Ca>
+
         //Retorna apenas registros ativos
         //return  repository.findAllByAtivoTrue(paginacao);
         //Retorna todos registros

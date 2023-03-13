@@ -14,7 +14,7 @@ public record ProductDTO(
         @NotNull
         Boolean status,
         @NotBlank
-        String desciption,
+        String description,
         Culture culture,
         @JsonProperty ("imgs")
         @NotEmpty(message = "Adicionar imagem.")

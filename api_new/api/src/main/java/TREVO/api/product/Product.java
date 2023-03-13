@@ -34,8 +34,8 @@ public class Product {
     @Column(name = "status")
     private Boolean status;
     @NotBlank
-    @Column(name = "desciption", columnDefinition = "Text")
-    private String desciption;
+    @Column(name = "description", columnDefinition = "Text")
+    private String description;
     @Column(name = "date_register")
     private LocalDate date_register = LocalDate.now();
     @Enumerated(EnumType.STRING)
@@ -65,7 +65,7 @@ public class Product {
         this.culture = dados.culture();
         this.imgs = imgs;
         this.catalogs = catalogs;
-        this.desciption = desciption;
+        this.description = dados.description();
         this.ativo = true;
     }
     public void atualizar(ProductDTO dados) {
@@ -81,8 +81,8 @@ public class Product {
         if (dados.culture() != null) {
             this.culture = dados.culture();
         }
-        if (dados.desciption() != null){
-            this.desciption =dados.desciption();
+        if (dados.description() != null){
+            this.description =dados.description();
         }
     }
     public void excluir() {
