@@ -25,8 +25,10 @@ public class CompanyController {
     @GetMapping(value ="/listar")
     public Page<Company> listar(@PageableDefault() Pageable paginacao) {
         //return repository.findAll(paginacao);
-        //Retorna apenas registros ativos
-        return  repository.findAllByAtivoTrue(paginacao);
+        //Retorna apenas registros ativos:
+        //return  repository.findAllByAtivoTrue(paginacao);
+        //Retorna todos registros:
+        return  repository.findAll(paginacao);
     }
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
     @PutMapping(value = "/atualizar/{id}")
@@ -40,11 +42,14 @@ public class CompanyController {
     @DeleteMapping(value = "excluir/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
+        //Exclui definitivamente:
+        repository.deleteById(id);
+
         //Exclusão lógica, mantem arquivado:
-        Company company= repository.getReferenceById(id);
-        company.excluir();
-        repository.save(company);
-        return ResponseEntity.ok().body("Company TREVO S.A., excluída.");
+        // Company company = repository.getReferenceById(id);
+        //company.excluir();
+        //repository.save(company);
+        return ResponseEntity.ok().body("Company, excluída.");
         //Exclui definitivamente:
         //repository.deleteById(id);
     }

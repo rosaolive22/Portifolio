@@ -23,7 +23,7 @@ public class Order {
     @NotNull
     private String phone;
     @NotBlank
-    //@Column(name = "e_mail")
+    @Column(name = "e_mail",unique = true)
     private String e_mail;
     @NotBlank
     private String country;
@@ -49,7 +49,7 @@ public class Order {
         this.ativo = true;
     }
 
-    public void atualizar(OrderDTO dados) {
+    public void atualizar(OrderDTO dados, List<Product> products) {
         if (dados.name() != null) {
             this.name = dados.name();
         }
@@ -61,6 +61,9 @@ public class Order {
         }
         if (dados.country() != null) {
             this.country = dados.country();
+        }
+        if (products != null){
+            this.products = products;
         }
     }
 

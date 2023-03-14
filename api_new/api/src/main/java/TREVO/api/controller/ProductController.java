@@ -35,7 +35,7 @@ public class ProductController {
 
     @PostMapping(value = "/cadastrar")
     @Transactional
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid ProductDTO dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid ProductDTO dados) {
         List<Image> imgs = imageRepository.findByIdIn(dados.imgsIds());
         List<Catalog> catalogs = catalogRepository.findByIdIn(dados.catalogIds());
         repository.save(new Product(dados, imgs, catalogs));
@@ -63,19 +63,24 @@ public class ProductController {
     @Transactional
     public ResponseEntity<?> update(@RequestBody @Valid ProductDTO dados, @PathVariable Long id){
         Product product= repository.findById(id).orElse(null);
+        List<Image> imgs = imageRepository.findByIdIn(dados.imgsIds());
+        List<Catalog> catalogs = catalogRepository.findByIdIn(dados.catalogIds());
         assert product != null;
-        product.atualizar(dados);
+        product.atualizar(dados,imgs, catalogs);
         repository.save(product);
         return ResponseEntity.ok().body("Produto atualizado com sucesso!");
     }
     @DeleteMapping(value = "excluir/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
+        //Excluir definitivamente:
+        repository.deleteById(id);
+
         //Exclusão lógica, mantem arquivado:
-        Product product = repository.findById(id).orElse(null);
-        assert product != null;
-        product.excluir();
-        return ResponseEntity.ok().body("Exclusão lógica concluida.");
+        //Product product = repository.findById(id).orElse(null);
+        //assert product != null;
+        //product.excluir();
+        return ResponseEntity.ok().body("Exclusão concluida.");
         //Excluir definitivamente:
         //repository.deleteById(id_product);
     }

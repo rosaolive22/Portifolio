@@ -1,6 +1,7 @@
 package TREVO.api.company;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    //@Pattern(regexp = "\\d{14}")
+    @Pattern(regexp = "\\d{14}")
     private String cnpj;
     @NotBlank
     @Column(name = "name",unique = true)

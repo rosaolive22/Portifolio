@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "id")
     private Long id;
     @NotBlank
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     private String name;
     @Column(name = "size")
     private String size;
@@ -68,7 +68,7 @@ public class Product {
         this.description = dados.description();
         this.ativo = true;
     }
-    public void atualizar(ProductDTO dados) {
+    public void atualizar(ProductDTO dados, List<Image>imgs, List<Catalog>catalogs) {
         if (dados.name() != null) {
             this.name = dados.name();
         }
@@ -77,6 +77,12 @@ public class Product {
         }
         if (dados.status() != null) {
             this.status = dados.status();
+        }
+        if (imgs != null){
+            this.imgs = imgs;
+        }
+        if (catalogs != null){
+            this.catalogs = catalogs;
         }
         if (dados.culture() != null) {
             this.culture = dados.culture();

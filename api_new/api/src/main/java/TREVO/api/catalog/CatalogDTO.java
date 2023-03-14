@@ -1,5 +1,6 @@
 package TREVO.api.catalog;
 
 public record CatalogDTO(
-        Culture culture) {
+        Culture culture,
+        String linha) {
 }

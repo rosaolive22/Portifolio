@@ -38,8 +38,9 @@ public class OrderController {
     @Transactional
     public ResponseEntity<?> update(@RequestBody @Valid OrderDTO dados, @PathVariable Long id){
         Order order = repository.findById(id).orElse(null);
+        List<Product> products = productRepository.findByIdIn(dados.productIds());
         assert order != null;
-        order.atualizar(dados);
+        order.atualizar(dados, products);
         repository.save(order);
         return ResponseEntity.ok().body("Solicitação de orçamento atualizada com sucesso!" +
                 " \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
@@ -47,13 +48,15 @@ public class OrderController {
     @DeleteMapping(value = "excluir/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
-        //Exclusão lógica, mantem arquivado:
-        Order order = repository.findById(id).orElse(null);
-        assert order != null;
-        order.excluir();
-        repository.save(order);
-        return ResponseEntity.ok().body("Pedido de orçamento cancelado.");
         //Exclui definitivamente:
-        //repository.deleteById(order);
+        repository.deleteById(id);
+
+        //Exclusão lógica, mantem arquivado:
+        //Order order = repository.findById(id).orElse(null);
+        //assert order != null;
+        //order.excluir();
+        //repository.save(order);
+        return ResponseEntity.ok().body("Pedido de orçamento cancelado.");
+
     }
 }
