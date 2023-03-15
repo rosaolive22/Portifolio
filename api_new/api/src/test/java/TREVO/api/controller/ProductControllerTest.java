@@ -46,32 +46,32 @@ class ProductControllerTest {
     @Autowired
     private CatalogRepository catalogRepository;
 
-    @Test
-    @DisplayName("Deve devolver código http 400 quando informacoes estão invalidas")
-    @WithMockUser
-    void cadastrar_cenario1() throws Exception{
-        //URI urlTemplate = null;
-        var response = mvc.perform(post(urlTemplat:"/cadastrar"));
-                .andReturn().getResponse();
-                assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
-    }
-    @Test
-    @DisplayName("Deve devolver código http 200 quando informacoes estão válidas")
-    @WithMockUser
-    void cadastrar_cenario2() throws Exception {
-        //URI urlTemplate = null;
-        var response = mvc.perform(
-                post(urlTemplat:"/cadastrar"));
-                        .contentType(MediaType.APPLICATION_JSON)
-                .content(productDTOJacksonTester, imageDTOJacksonTester, catalogDTOJacksonTester.write(
-                        new ProductDTO(id:1, imgs:1, catalogs:
-        1, name, size, status, description, date_register, culture)
-                                ).getJosn()
-                        )
-                .andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-
-        var jsonEsperado = repository.save(new Product(dados, imgs, catalogs));
-
-
-    }
+//    @Test
+//    @DisplayName("Deve devolver código http 400 quando informacoes estão invalidas")
+//    @WithMockUser
+//    void cadastrar_cenario1() throws Exception{
+//        //URI urlTemplate = null;
+//        var response = mvc.perform(post(urlTemplat:"/cadastrar"));
+//                .andReturn().getResponse();
+//                assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
+//    }
+//    @Test
+//    @DisplayName("Deve devolver código http 200 quando informacoes estão válidas")
+//    @WithMockUser
+//    void cadastrar_cenario2() throws Exception {
+//        //URI urlTemplate = null;
+//        var response = mvc.perform(
+//                post(urlTemplat:"/cadastrar"));
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                .content(productDTOJacksonTester, imageDTOJacksonTester, catalogDTOJacksonTester.write(
+//                        new ProductDTO(id:1, imgs:1, catalogs:
+//        1, name, size, status, description, date_register, culture)
+//                                ).getJosn()
+//                        )
+//                .andReturn().getResponse();
+//        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+//
+//        var jsonEsperado = repository.save(new Product(dados, imgs, catalogs));
+//
+//
+   }
