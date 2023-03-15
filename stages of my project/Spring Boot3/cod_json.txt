@@ -1,0 +1,73 @@
+Json de todos:
+
+company
+{ 
+"cnpj":"12345678999999",
+"name":"Trevo S.A.",
+"business_branch":"Máquinas agrícolas de grande porte",
+"founding_yeans":1931
+}
+-----------------------------
+product  
+{
+"name":"Adubadora CONDOR 1200 Multicontrol",
+"size":"40/30",
+"status":"True",
+"culture":"CEREAIS",	
+"imgs":[1],	
+"catalogs":[1],
+"description":" "Descrições e detalhes técnicos:
+Tamanho da área suportada;...",
+"date_register":" "
+}
+{
+"name":"Adubadora CONDOR 800",
+"size":"40/30",
+"status":"True",
+"culture":"CEREAIS",	
+"imgs":[8],	
+"catalogs":[2],
+"description":"Siga todas as instruções",
+"date_register":" "
+}
+-------------------------------
+catalog 
+{
+"culture":"CEREAIS",
+"linha":"Pulverizadores de barras"
+}
+
+"PECUÁRIA"
+"HORTALIÇAS"
+"CEREAIS"
+"CANA"
+-------------------------------
+img --condor 800 
+{
+"img":"https://www.dropbox.com/scl/fo/yia5pdl9ktruc8d72ux3b/h?dl=0&rlkey=unytqjl41lugimpdfqy5fk8mo",
+"ativo": "True"
+}
+condor 1200
+{
+"img":"https://www.dropbox.com/scl/fo/4sxs7jaya9yaj4j8g7c2d/h?dl=0&rlkey=0t5hbupz7b6yybaw192283b5a",
+"ativo": "True"
+}
+
+--------------------------------
+order
+{
+"name":"Gustavo Tucano",
+"phone":1411111111,
+"e_mail":"gustavo@testando_1", 
+"country":"Brasil",
+"products" : [2,1]
+}
+{
+"name":"Emilia Costa",
+"phone":147777777,
+"e_mail":"emilia@testando_12", 
+"country":"Brasil",
+"products" : [2]
+}
+-------------------------------
+
