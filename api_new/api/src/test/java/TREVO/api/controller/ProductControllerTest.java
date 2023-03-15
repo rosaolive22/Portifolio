@@ -51,7 +51,7 @@ class ProductControllerTest {
 //    @WithMockUser
 //    void cadastrar_cenario1() throws Exception{
 //        //URI urlTemplate = null;
-//        var response = mvc.perform(post(urlTemplat:"/cadastrar"));
+//        var response = mvc.perform(post(urlTemplat:"/cadastrar"))
 //                .andReturn().getResponse();
 //                assertThat(response.getStatus()).isEqualTo(HttpStatus.BAD_REQUEST.value());
 //    }
