@@ -1,5 +1,6 @@
 package TREVO.api.company;
 
+import TREVO.api.DTOs.CompanyDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;

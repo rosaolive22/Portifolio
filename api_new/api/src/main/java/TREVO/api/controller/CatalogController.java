@@ -1,9 +1,10 @@
 package TREVO.api.controller;
 
 import TREVO.api.catalog.Catalog;
-import TREVO.api.catalog.CatalogRepository;
-import TREVO.api.catalog.CatalogDTO;
-import TREVO.api.product.Product;
+import TREVO.api.company.Company;
+import TREVO.api.repository.CatalogRepository;
+import TREVO.api.DTOs.CatalogDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.core.convert.TypeDescriptor.map;
 
 @RestController
 @RequestMapping("catalog")
@@ -24,10 +23,11 @@ public class CatalogController {
     @PostMapping
     @Transactional
     public ResponseEntity<?> cadastrar(@RequestBody @Valid CatalogDTO dados){
-        repository.save(new Catalog(dados));
-        return ResponseEntity.ok().body("Catalogo cadastrado com sucesso!");
+        Catalog newcatalog = new Catalog(dados);
+        repository.save(newcatalog);
+        return ResponseEntity.ok().body(newcatalog);
     }
-    @GetMapping(value ="/listar")
+    @GetMapping
     public Page<Catalog> listar(@PageableDefault(page = 0, size = 10, sort = {"id"}) Pageable paginacao) {
         //Retorna apenas registros ativos
         //return  repository.findAllByAtivoTrue(paginacao);
@@ -35,27 +35,30 @@ public class CatalogController {
         return  repository.findAll(paginacao);
     }
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
-    @PutMapping(value = "/atualizar/{id}")
+    @PutMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> update(@RequestBody @Valid CatalogDTO dados, @PathVariable Long id){
         Catalog catalog= repository.findById(id).orElse(null);
         assert catalog != null;
         catalog.atualizar(dados);
         repository.save(catalog);
-        return ResponseEntity.ok().body("Catalogo atualizado com sucesso!");
+        return ResponseEntity.ok().body(catalog);
     }
-    @DeleteMapping(value = "excluir/{id}")
+    @DeleteMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclui definitivamente:
         repository.deleteById(id);
+        ObjectMapper mapper = new ObjectMapper();
+        Catalog catalogAtivo = new Catalog();
+        return ResponseEntity.ok().body(catalogAtivo);
 
         //Exclusão lógica, mantem arquivado:
         //Catalog catalog= repository.findById(id).orElse(null);
         //assert catalog != null;
         //catalog.excluir();
         //repository.save(catalog);
-        return ResponseEntity.ok().body("Catalogo excluído com sucesso.");
+        //return ResponseEntity.ok().body(catalogAtivo);
         //Exclui definitivamente:
         //repository.deleteById(id);
     }

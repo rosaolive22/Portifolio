@@ -1,10 +1,11 @@
 package TREVO.api.controller;
 
 import TREVO.api.order.Order;
-import TREVO.api.order.OrderRepository;
-import TREVO.api.order.OrderDTO;
+import TREVO.api.repository.OrderRepository;
+import TREVO.api.DTOs.OrderDTO;
 import TREVO.api.product.Product;
-import TREVO.api.product.ProductRepository;
+import TREVO.api.repository.ProductRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +25,21 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody OrderDTO dados) {
         List<Product> products = productRepository.findByIdIn(dados.productIds());
-        repository.save(new Order(dados, products));
-        return ResponseEntity.ok().body("Solicitação de orçamento efetuada com sucesso! " +
-                "\nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
+        Order neworder = new Order(dados, products);
+        repository.save(neworder);
+        return ResponseEntity.ok().body(neworder);
+        //repository.save(new Order(dados, products));
+
+        //return ResponseEntity.ok().body("Solicitação de orçamento efetuada com sucesso! " +
+                //"\nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
     }
-    @GetMapping(value ="/listar")
+    @GetMapping
     public Page<Order> listar(Pageable paginacao){
         return repository.findAll(paginacao);
     }
 
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
-    @PutMapping(value = "/atualizar/{id}")
+    @PutMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> update(@RequestBody @Valid OrderDTO dados, @PathVariable Long id){
         Order order = repository.findById(id).orElse(null);
@@ -42,21 +47,26 @@ public class OrderController {
         assert order != null;
         order.atualizar(dados, products);
         repository.save(order);
-        return ResponseEntity.ok().body("Solicitação de orçamento atualizada com sucesso!" +
-                " \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
+        return ResponseEntity.ok().body(order);
+
+        //return ResponseEntity.ok().body("Solicitação de orçamento atualizada com sucesso!" +
+               // " \nEm breve um de nossos vendedores entrará em contato.  \nEquipe TREVO S.A. agradece! ");
     }
-    @DeleteMapping(value = "excluir/{id}")
+    @DeleteMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclui definitivamente:
         repository.deleteById(id);
-
+        ObjectMapper mapper = new ObjectMapper();
+        Order orderAtivo = new Order();
+        return ResponseEntity.ok().body(orderAtivo);
         //Exclusão lógica, mantem arquivado:
         //Order order = repository.findById(id).orElse(null);
         //assert order != null;
         //order.excluir();
         //repository.save(order);
-        return ResponseEntity.ok().body("Pedido de orçamento cancelado.");
+
+        //return ResponseEntity.ok().body(orderAtivo);
 
     }
 }

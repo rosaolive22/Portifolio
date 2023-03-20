@@ -1,4 +1,4 @@
-package TREVO.api.image;
+package TREVO.api.DTOs;
 
 import jakarta.validation.constraints.NotNull;
 

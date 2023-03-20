@@ -1,4 +1,4 @@
-package TREVO.api.company;
+package TREVO.api.DTOs;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

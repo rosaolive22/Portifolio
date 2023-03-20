@@ -1,8 +1,6 @@
-package TREVO.api.catalog;
+package TREVO.api.repository;
 
-import TREVO.api.product.Product;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import TREVO.api.catalog.Catalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

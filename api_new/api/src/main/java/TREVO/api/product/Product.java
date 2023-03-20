@@ -1,5 +1,6 @@
-package TREVO.api.product;
+package TREVO.api.product; //pacote de coleção de classes
 
+import TREVO.api.DTOs.ProductDTO;
 import TREVO.api.catalog.Catalog;
 import TREVO.api.catalog.Culture;
 import TREVO.api.image.Image;
@@ -10,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.*;
 import lombok.NoArgsConstructor;
-import java.net.URL;
+
 import java.time.LocalDate;
 import java.util.List;
 

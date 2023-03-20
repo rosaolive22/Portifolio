@@ -1,8 +1,10 @@
 package TREVO.api.controller;
 
 import TREVO.api.company.Company;
-import TREVO.api.company.CompanyRepository;
-import TREVO.api.company.CompanyDTO;
+import TREVO.api.order.Order;
+import TREVO.api.repository.CompanyRepository;
+import TREVO.api.DTOs.CompanyDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,11 @@ public class CompanyController {
     private CompanyRepository repository;
     @PostMapping
     public ResponseEntity<?>  cadastrar(@RequestBody CompanyDTO dados){
-        repository.save(new Company(dados));
-        return ResponseEntity.ok().body("Company cadastrada com sucesso!");
+        Company newcompany = new Company(dados);
+        repository.save(newcompany);
+        return ResponseEntity.ok().body(newcompany);
     }
-    @GetMapping(value ="/listar")
+    @GetMapping
     public Page<Company> listar(@PageableDefault() Pageable paginacao) {
         //return repository.findAll(paginacao);
         //Retorna apenas registros ativos:
@@ -31,25 +34,29 @@ public class CompanyController {
         return  repository.findAll(paginacao);
     }
     //Id dinâmico como parâmetro que passaremos na URL do insomnia
-    @PutMapping(value = "/atualizar/{id}")
+    @PutMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> update(@RequestBody @Valid CompanyDTO dados, @PathVariable Long id){
         Company company= repository.getReferenceById(id);
+        assert company != null;
         company.atualizar(dados);
         repository.save(company);
-        return ResponseEntity.ok().body("Dados da Company TREVO S.A., atualizado com sucesso!");
+        return ResponseEntity.ok().body(company);
     }
-    @DeleteMapping(value = "excluir/{id}")
+    @DeleteMapping(value = "/{id}")
     @Transactional
     public ResponseEntity<?> excluir(@PathVariable Long id){
         //Exclui definitivamente:
         repository.deleteById(id);
+        ObjectMapper mapper = new ObjectMapper();
+        Company companyAtivo = new Company();
+        return ResponseEntity.ok().body(companyAtivo);
 
         //Exclusão lógica, mantem arquivado:
         // Company company = repository.getReferenceById(id);
         //company.excluir();
         //repository.save(company);
-        return ResponseEntity.ok().body("Company, excluída.");
+        //return ResponseEntity.ok().body(companyAtivo);
         //Exclui definitivamente:
         //repository.deleteById(id);
     }

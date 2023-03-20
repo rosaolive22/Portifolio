@@ -1,4 +1,4 @@
-package TREVO.api.product;
+package TREVO.api.DTOs;
 
 import TREVO.api.catalog.Culture;
 import jakarta.persistence.Column;

@@ -1,5 +1,6 @@
-package TREVO.api.order;
+package TREVO.api.repository;
 
+import TREVO.api.order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

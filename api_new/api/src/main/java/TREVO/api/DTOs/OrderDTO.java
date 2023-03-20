@@ -1,4 +1,4 @@
-package TREVO.api.order;
+package TREVO.api.DTOs;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

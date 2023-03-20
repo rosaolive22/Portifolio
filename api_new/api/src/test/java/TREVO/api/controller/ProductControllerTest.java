@@ -1,50 +1,50 @@
-package TREVO.api.controller;
-
-import TREVO.api.catalog.CatalogDTO;
-import TREVO.api.image.ImageDTO;
-import TREVO.api.product.ProductDTO;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import TREVO.api.image.ImageRepository;
-import TREVO.api.catalog.CatalogRepository;
-import TREVO.api.product.ProductRepository;
-import TREVO.api.catalog.Catalog;
-import TREVO.api.image.Image;
-import TREVO.api.product.Product;
-import java.net.URI;
-import java.util.List;
-
-@SpringBootTest
-@AutoConfigureMockMvc //simula uma requisição
-class ProductControllerTest {
-    @Autowired
-    private MockMvc mvc;//testes unitários, simula
-
-    @Autowired
-    private JacksonTester<ProductDTO> productDTOJacksonTester ;
-    @Autowired
-    private JacksonTester<ImageDTO> imageDTOJacksonTester;
-    @Autowired
-    private JacksonTester<CatalogDTO>  catalogDTOJacksonTester;
-
-    @Autowired
-    private ProductRepository repository;
-    @Autowired
-    private ImageRepository imageRepository;
-    @Autowired
-    private CatalogRepository catalogRepository;
+//package TREVO.api.controller;
+//
+//import TREVO.api.DTOs.CatalogDTO;
+//import TREVO.api.DTOs.ImageDTO;
+//import TREVO.api.DTOs.ProductDTO;
+//import org.junit.jupiter.api.DisplayName;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.json.JacksonTester;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.MediaType;
+//import org.springframework.security.test.context.support.WithMockUser;
+//import org.springframework.test.web.servlet.MockMvc;
+//import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+//import java.net.HttpURLConnection;
+//import java.net.URL;
+//import TREVO.api.Repository.ImageRepository;
+//import TREVO.api.Repository.CatalogRepository;
+//import TREVO.api.Repository.ProductRepository;
+//import TREVO.api.catalog.Catalog;
+//import TREVO.api.image.Image;
+//import TREVO.api.product.Product;
+//import java.net.URI;
+//import java.util.List;
+//
+//@SpringBootTest
+//@AutoConfigureMockMvc //simula uma requisição
+//class ProductControllerTest {
+//    @Autowired
+//    private MockMvc mvc;//testes unitários, simula
+//
+//    @Autowired
+//    private JacksonTester<ProductDTO> productDTOJacksonTester ;
+//    @Autowired
+//    private JacksonTester<ImageDTO> imageDTOJacksonTester;
+//    @Autowired
+//    private JacksonTester<CatalogDTO>  catalogDTOJacksonTester;
+//
+//    @Autowired
+//    private ProductRepository repository;
+//    @Autowired
+//    private ImageRepository imageRepository;
+//    @Autowired
+//    private CatalogRepository catalogRepository;
 
 //    @Test
 //    @DisplayName("Deve devolver código http 400 quando informacoes estão invalidas")
@@ -72,6 +72,4 @@ class ProductControllerTest {
 //        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 //
 //        var jsonEsperado = repository.save(new Product(dados, imgs, catalogs));
-//
-//
-   }
+  // }
