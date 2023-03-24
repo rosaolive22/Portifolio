@@ -1,9 +1,7 @@
-package TREVO.api.product; //pacote de coleção de classes
+package TREVO.api.domain; //pacote de coleção de classes
 
 import TREVO.api.DTOs.ProductDTO;
-import TREVO.api.catalog.Catalog;
-import TREVO.api.catalog.Culture;
-import TREVO.api.image.Image;
+import TREVO.api.Enum.Culture;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

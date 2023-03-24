@@ -1,10 +1,7 @@
 package TREVO.api.DTOs;
 
-import TREVO.api.catalog.Culture;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
+import TREVO.api.Enum.Culture;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 public record ProductDTO(

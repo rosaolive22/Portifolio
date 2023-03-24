@@ -1,4 +1,4 @@
-package TREVO.api.catalog;
+package TREVO.api.Enum;
 
 public enum Culture {
     PECUÁRIA,

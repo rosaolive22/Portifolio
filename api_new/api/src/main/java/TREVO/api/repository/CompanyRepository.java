@@ -1,6 +1,6 @@
 package TREVO.api.repository;
 
-import TREVO.api.company.Company;
+import TREVO.api.domain.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

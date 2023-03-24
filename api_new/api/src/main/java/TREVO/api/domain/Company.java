@@ -1,4 +1,4 @@
-package TREVO.api.company;
+package TREVO.api.domain;
 
 import TREVO.api.DTOs.CompanyDTO;
 import jakarta.persistence.*;

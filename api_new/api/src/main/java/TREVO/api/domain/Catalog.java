@@ -1,6 +1,7 @@
-package TREVO.api.catalog;
+package TREVO.api.domain;
 
 import TREVO.api.DTOs.CatalogDTO;
+import TREVO.api.Enum.Culture;
 import jakarta.persistence.*;
 import lombok.*;
 

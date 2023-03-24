@@ -1,10 +1,10 @@
 package TREVO.api.controller;
 
-import TREVO.api.catalog.Catalog;
+import TREVO.api.domain.Catalog;
 import TREVO.api.repository.CatalogRepository;
-import TREVO.api.image.Image;
+import TREVO.api.domain.Image;
 import TREVO.api.repository.ImageRepository;
-import TREVO.api.product.Product;
+import TREVO.api.domain.Product;
 import TREVO.api.DTOs.ProductDTO;//
 import TREVO.api.repository.ProductRepository;//
 import com.fasterxml.jackson.databind.ObjectMapper;

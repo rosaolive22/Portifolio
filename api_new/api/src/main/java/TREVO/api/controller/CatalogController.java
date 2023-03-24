@@ -1,7 +1,6 @@
 package TREVO.api.controller;
 
-import TREVO.api.catalog.Catalog;
-import TREVO.api.company.Company;
+import TREVO.api.domain.Catalog;
 import TREVO.api.repository.CatalogRepository;
 import TREVO.api.DTOs.CatalogDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;

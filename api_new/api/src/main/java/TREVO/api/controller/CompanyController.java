@@ -1,17 +1,15 @@
 package TREVO.api.controller;
 
-import TREVO.api.company.Company;
+import TREVO.api.domain.Company;
 import TREVO.api.repository.CompanyRepository;
 import TREVO.api.DTOs.CompanyDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -63,7 +61,7 @@ public class CompanyController {
     @GetMapping("/{id}")
         public ResponseEntity<?> detalhar(@PathVariable Long id){
         //var company = new Company(dados).repository.getReferenceById(id);
-        var company  = repository.findById(id);
+        var company  = repository.getReferenceById(id);//findById(id);
         return ResponseEntity.ok(company);
     }
 }

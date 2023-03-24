@@ -1,4 +1,4 @@
-package TREVO.api.image;
+package TREVO.api.domain;
 
 
 import TREVO.api.DTOs.ImageDTO;

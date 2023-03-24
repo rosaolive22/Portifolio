@@ -1,7 +1,7 @@
-package TREVO.api.order;
+package TREVO.api.domain;
 
 import TREVO.api.DTOs.OrderDTO;
-import TREVO.api.product.Product;
+import TREVO.api.domain.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

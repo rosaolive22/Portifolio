@@ -1,9 +1,9 @@
 package TREVO.api.controller;
 
-import TREVO.api.order.Order;
+import TREVO.api.domain.Order;
 import TREVO.api.repository.OrderRepository;
 import TREVO.api.DTOs.OrderDTO;
-import TREVO.api.product.Product;
+import TREVO.api.domain.Product;
 import TREVO.api.repository.ProductRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;

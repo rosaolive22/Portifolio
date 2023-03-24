@@ -1,6 +1,6 @@
 package TREVO.api.repository;
 
-import TREVO.api.catalog.Catalog;
+import TREVO.api.domain.Catalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -20,9 +20,9 @@
 //import TREVO.api.Repository.ImageRepository;
 //import TREVO.api.Repository.CatalogRepository;
 //import TREVO.api.Repository.ProductRepository;
-//import TREVO.api.catalog.Catalog;
-//import TREVO.api.image.Image;
-//import TREVO.api.product.Product;
+//import TREVO.api.domain.Catalog;
+//import TREVO.api.domain.Image;
+//import TREVO.api.domain.Product;
 //import java.net.URI;
 //import java.util.List;
 //

@@ -1,7 +1,6 @@
 package TREVO.api.controller;
 
-import TREVO.api.image.Image;
-import TREVO.api.order.Order;
+import TREVO.api.domain.Image;
 import TREVO.api.repository.ImageRepository;
 import TREVO.api.DTOs.ImageDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
